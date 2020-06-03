@@ -1,19 +1,21 @@
 package it.fides.cinema.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.fides.cinema.dto.BigliettoDto;
-import it.fides.cinema.entity.Biglietto;
 import it.fides.cinema.service.GestioneBiglietto;
 
 @RestController
 public class GestioneBigliettoController {
-	//findALL BIGLIETTO
+	//findAll BIGLIETTO
 	
 	@Autowired
 	private GestioneBiglietto gestioneBiglietto;
@@ -22,12 +24,18 @@ public class GestioneBigliettoController {
 	public Set<BigliettoDto>allBiglietto(){
 		return gestioneBiglietto.findAll();
 	}
-	@GetMapping(value="/testBiglietto")
-	public List<Biglietto>testBiglietto(){
-		return gestioneBiglietto.testBiglietto();
+	@PostMapping(value="/testBiglietto")
+	public List<BigliettoDto>testBiglietto(@RequestParam String fila){
+		return gestioneBiglietto.testBiglietto(fila);
 	}
-	@GetMapping(value="/testBiglietto2")
-	public List<BigliettoDto>testBiglietto2(){
-		return gestioneBiglietto.testBiglietto2();
+	@PostMapping(value="/findByIdBiglietto")
+	public <Optional> BigliettoDto findByIdBiglietto(@RequestParam Long id){
+		try {
+			return gestioneBiglietto.findById(id);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			System.out.println("BIGLIETTO NON TROVATO");
+		}
+		return null;
 	}
 }

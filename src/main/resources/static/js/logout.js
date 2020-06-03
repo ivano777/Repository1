@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#bth-logout").click(function (event) {
+    $("#logout").click(function (event) {
 
         //stop submit the form, we will post it manually.
         event.preventDefault();
@@ -11,30 +11,25 @@ $(document).ready(function () {
 
 });
 
-function fire_ajax_submit() {
+function logout() {
 
-//    var search = {}
-//    search["username"] = $("#username").val();
-//    search["password"] = $("#password").val();
-
-    $("#bth-logout").prop("disabled", true);
+    $("#logout").prop("disabled", true);
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "/logout",
-//        data: JSON.stringify(search),
-//        dataType: 'json',
         cache: false,
         timeout: 600000,
         success: function (data) {
 
-            var json = "<h4>Ajax Response</h4>&lt;pre&gt;"
-                + JSON.stringify(data, null, 4) + "&lt;/pre&gt;";
+            var json = "Exit..."
+         
             $('#feedback').html(json);
 
+            window.location.replace("/index.html");
             console.log("SUCCESS : ", data);
-            $("#bth-logout").prop("disabled", false);
+            $("#logout").prop("disabled", false);
 
         },
         error: function (e) {
@@ -44,7 +39,7 @@ function fire_ajax_submit() {
             $('#feedback').html(json);
 
             console.log("ERROR : ", e);
-            $("#bth-logout").prop("disabled", false);
+            $("#logout").prop("disabled", false);
 
         }
     });

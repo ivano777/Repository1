@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.fides.cinema.dto.LoginDto;
@@ -53,12 +54,8 @@ public class GestionePersonaController {
 		httpSession.invalidate();
 		return ResponseEntity.ok(HttpStatus.OK);
 	}
-	@GetMapping(value="/testPersona")
-	public List<PersonaDto> testPersona(){
-		return gestionePersona.testPersona();
-	}
-	@GetMapping(value="/testPersona2")
-	public List<PersonaDto> testPersona2(){
-		return gestionePersona.testPersona2();
+	@PostMapping(value="/testPersona")
+	public List<PersonaDto> testPersona(@RequestParam String nome){
+		return gestionePersona.testPersona(nome);
 	}
 }

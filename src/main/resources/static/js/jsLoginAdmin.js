@@ -1,13 +1,13 @@
 $(document).ready(function () {
 
-//    $("#search-form").submit(function (event) {
-//
-//        //stop submit the form, we will post it manually.
-//        event.preventDefault();
-//
-//        fire_ajax_submit();
-//
-//    });
+    $("#search-form").submit(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        fire_ajax_submit();
+
+    });
 
 });
 
@@ -24,7 +24,7 @@ function fire_ajax_submit() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/login",
+        url: "/loginAdmin",
         data: JSON.stringify(search),
         dataType: 'json',
         cache: false,
@@ -36,8 +36,8 @@ function fire_ajax_submit() {
             $('#feedbackLog').html(json);
             
            
-            window.location.replace("/areaUtente.html");
             setTimeout("pageRedirect()", 10000);
+            window.location.replace("/insertFilm.html");
             
             
             console.log("SUCCESS : ", data);
@@ -47,7 +47,7 @@ function fire_ajax_submit() {
         error: function (e) {
 
             var json = 
-                "Utente non valido"
+                "Admin non valido, controllare username e password"
             $('#feedbackLog').html(json);
 
             console.log("ERROR : ", e);

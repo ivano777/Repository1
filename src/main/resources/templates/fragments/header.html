@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+     
+<body>
+
+ <div th:fragment="header" class="page-header clearfix">
+       
+       <!-- navbar -->
+	<div class="pos-f-t">
+		<div class="collapse" id="navbarToggleExternalContent">
+			<div class="bg-dark p-4">
+				<h5 class="text-white h4">Menu</h5>
+				<span class="text-muted">OnlineCinema</span> <br>
+				<ul>
+					<li><a href="contacts.html">Contatti</a></li>
+					<li><a href="aboutUs.html">Chi siamo</a></li>
+				</ul>
+			</div>
+		</div>
+		<nav class="navbar navbar-dark bg-secondary">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarToggleExternalContent"
+				aria-controls="navbarToggleExternalContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="login.html"> <img src="img/video-cameras.svg"
+				width="30" height="30" class="d-inline-block align-top" alt="">
+				OnlineCinema.it
+			</a>
+		</nav>
+	</div>
+
+    </div>
+
+</body>
+</html>

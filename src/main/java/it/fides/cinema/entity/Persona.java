@@ -12,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Persona {
@@ -21,8 +25,11 @@ public class Persona {
 	@Column(updatable = false, nullable = false)
 	private Long id;
 	@Column
+	@NotEmpty(message = "*Il campo username non può essere vuoto")
 	private String username;
 	@Column
+	@Length(min = 5, message = "*La password deve essere minimo 5 caratteri")
+    @NotEmpty(message = "*Il campo password non può essere vuoto")
 	private String password;
 	@Column
 	private String nome;
@@ -31,6 +38,8 @@ public class Persona {
 	@Column 
 	private Date annoNascita;
 	@Column
+	@Email(message = "*Inserisci una email valida")
+	@NotEmpty(message = "*Il campo email non può essere vuoto")
 	private String email;
 	@Column
 	private String ruolo;
